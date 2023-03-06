@@ -41,6 +41,7 @@ const Add = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8800/cars", cars);
+      console.log(cars);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -54,80 +55,69 @@ const Add = () => {
       <h1>Add a new car</h1>
       <input
         type="text"
-        placeholder="Car manifacturer"
+        placeholder="Car manifacturer.."
         name="manifacturer"
         onChange={handleChange}
       />
       <textarea
         rows={5}
         type="text"
-        placeholder="Book desc"
-        name="desc"
+        placeholder="Car description.."
+        name="description"
         onChange={handleChange}
       />
       <input
-        type="number"
-        placeholder="Book price"
+        type="text"
+        placeholder="Car model.."
+        name="model"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="Car year.."
+        name="year"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="Price..$"
         name="price"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book cover"
-        name="cover"
+        placeholder="Car color.."
+        name="color"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book title"
-        name="title"
+        placeholder="Car mileage.."
+        name="mileage"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book title"
-        name="title"
+        placeholder="Horse power.."
+        name="hp"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book title"
-        name="title"
+        placeholder="Engine size.."
+        name="cc"
         onChange={handleChange}
       />
-      <input
-        type="text"
-        placeholder="Book title"
-        name="title"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Book title"
-        name="title"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Book title"
-        name="title"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Book title"
-        name="title"
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        placeholder="Book title"
-        name="title"
-        onChange={handleChange}
-      />
-      <button onClick={handleClick}>Add</button>
+      <select name="fuel">
+        <option value="">Select Fuel Type</option>
+        <option value="1">Diesel</option>
+        <option value="2">Gasoline</option>
+        <option value="3">Electric</option>
+        <option value="4">Hybrid</option>
+      </select>
+      <button onClick={handleClick}>Add listing</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/">See all cars</Link>
     </div>
   );
 };
