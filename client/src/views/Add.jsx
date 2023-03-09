@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Addform from "../components/addform"
 //axios library to establish connection between client>server. Uses http 
 
 
@@ -50,6 +50,8 @@ const Add = () => {
   };
 
   return (
+    <div>
+      <Addform></Addform>
     <div className="form">
 
       <h1>Add a new car</h1>
@@ -108,16 +110,17 @@ const Add = () => {
         name="cc"
         onChange={handleChange}
       />
-      <select name="fuel">
-        <option value="">Select Fuel Type</option>
-        <option value="1">Diesel</option>
-        <option value="2">Gasoline</option>
-        <option value="3">Electric</option>
-        <option value="4">Hybrid</option>
-      </select>
+      <input
+        type="text"
+        placeholder="Fuel type.."
+        name="fuel"
+        onChange={handleChange}
+      />
       <button onClick={handleClick}>Add listing</button>
       {error && "Something went wrong!"}
       <Link to="/">See all cars</Link>
+    </div>
+    
     </div>
   );
 };

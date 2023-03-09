@@ -52,7 +52,7 @@ const Add = () => {
   return (
     <div className="form">
 
-      <h1>Add a new car</h1>
+      <h1>Update existing car</h1>
       <input
         type="text"
         placeholder="Car manifacturer.."
