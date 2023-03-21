@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Carlist from '../components/carlist'
+import Loginlist from '../components/loginform'
 import Navbar from "../components/navbar"
 
 class Cars extends Component {
@@ -9,9 +9,7 @@ class Cars extends Component {
                 
                 <Navbar></Navbar>
                 
-                <Carlist>
-
-                </Carlist>
+                <Loginlist></Loginlist>
             </div>
         );
     }
