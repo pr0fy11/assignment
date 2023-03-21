@@ -49,7 +49,7 @@ export default function CarForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Add a new car
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -161,8 +161,8 @@ export default function CarForm() {
         </Grid>
       </Grid>
       <Grid>
-      <Button onClick={handleClick} variant="contained" color="success">
-        Success
+      <Button onClick={handleClick} fullWidth variant="contained" sx={{marginTop:5}}>
+        Publish
         </Button>
         </Grid>
     </React.Fragment>
