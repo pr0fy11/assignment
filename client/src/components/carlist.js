@@ -7,6 +7,10 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Carimg from '../assets/car.jpg'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -30,15 +34,29 @@ export default function ComplexGrid() {
     fetchAllCars();
   }, []);
 
+  const navigate = useNavigate();
+  const [error, setError] = useState(false)
+
+  const handleClick = async (e, id) => { // Accept an additional parameter for the id of the record to delete
+    e.preventDefault();
+    try {
+      await axios.delete(`http://localhost:8800/cars/${id}`); // Use template literals to include the id in the URL
+      window.location.reload();
+    } catch (err) {
+      setError(true);
+    }
+  };
     return (
     <div>
         {cars.map((car) => (
              
+             
         <Paper
-        
+            
             sx={{
                 p: 2,
                 margin: 'auto',
+                marginTop: 2,
                 marginBottom: 2,
                 maxWidth: 750,
                 flexGrow: 1,
@@ -84,7 +102,19 @@ export default function ComplexGrid() {
                     </Grid>
                 </Grid>
             </Grid>
-
+            <Grid sx={{ml:68}}>
+                <Stack direction="row" spacing={2}>
+                <Link style={{textDecoration:"none"}} to={`/update/${car.id}`}>
+                <Button variant="contained" color="success" >
+                    Edit
+                </Button>
+                </Link>
+                <Button onClick={(e) => handleClick(e, car.id)} variant="outlined" color="error">
+                    Delete
+                </Button>
+                </Stack>
+  
+                </Grid>
         </Paper >
         ))}
     </div>

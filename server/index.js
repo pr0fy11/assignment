@@ -1,27 +1,82 @@
 
 const express = require('express');
+const session = require('express-session');
 const mysql = require('mysql');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
+
+
+
+
+//establish connection with db dotenv
+
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE
+});
+
 
 app.use(cors());
 app.use(express.json());
 
-//establish connection with db
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "cars",
-});
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
   res.json("hello test");
 });
 
+//Login method
+
+app.post('/login', function (req, res) {
+  // capture the input fields
+  let username = req.body.username;
+  let password = req.body.password;
+  
+  // ensure the input fields exists and are not empty
+  if (username && password) {
+    // execute SQL query that'll select the account from the database based on the specified username and password
+    db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+      // if there is an issue with the query, output the error
+      if (error) throw error;
+      // if the account exists
+      if (results.length > 0) {
+        // authenticate the user
+        req.session.loggedin = true;
+        req.session.username = username;
+
+
+      } else {
+        res.send('Incorrect Username and/or Password!');
+      }
+      res.end();
+    });
+  } else {
+    res.send('Please enter Username and Password!');
+    res.end();
+  }
+});
+
+function isLoggedIn(req, res, next) {
+  if (req.session.loggedin) {
+    // If the user is logged in, call the next middleware
+    return next();
+  }
+  // If the user is not logged in, redirect to login page or return error response
+  res.redirect('http://localhost:3000/login');
+}
+
 //show all cars
+
 
 app.get("/cars", (req, res) => {
   const q = "SELECT * FROM cars";
@@ -112,6 +167,8 @@ app.put("/cars/:id", (req, res) => {
     return res.json(data);
   });
 });
+
+
 
 app.listen(8800, () => {
   console.log("Server started.");

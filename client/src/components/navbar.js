@@ -19,6 +19,8 @@ import { AccountCircle, Home, Timer, CalendarToday, PlaylistAddCheck } from '@mu
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 240;
 
@@ -95,7 +97,9 @@ export default function HeaderMenu() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         CarHub
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Link style={{ textDecoration: "none", color: "white" }} to='/login'>
+                        <Button color="inherit">Login</Button>
+                    </Link>
                     <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}
@@ -139,38 +143,21 @@ export default function HeaderMenu() {
                     <Link style={{ textDecoration: "none" }} to='/'>
                         <ListItemButton >
 
-                            <ListItemIcon>
+                            <HomeIcon sx={{mr:2}}>
                                 <Home fontSize='large' />
-                            </ListItemIcon >
+                            </HomeIcon >
                             <ListItemText sx={{ color: 'black' }}>Home</ListItemText>
 
                         </ListItemButton>
                     </Link>
                     <Link style={{ textDecoration: "none" }} to='/add'>
                         <ListItemButton>
-                            <ListItemIcon>
+                            <AddBoxIcon sx={{mr:2}}>
                                 <Timer fontSize='large' />
-                            </ListItemIcon >
+                            </AddBoxIcon >
                             <ListItemText sx={{ color: 'black' }}>Publish</ListItemText>
                         </ListItemButton>
                     </Link>
-                    <Link style={{ textDecoration: "none" }} to='/calendar'>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <CalendarToday fontSize='large' />
-                            </ListItemIcon >
-                            <ListItemText sx={{ color: 'black' }}>Calendar</ListItemText>
-                        </ListItemButton>
-                    </Link>
-                    <Link style={{ textDecoration: "none" }} to='/todo'>
-                        <ListItemButton>
-                            <ListItemIcon >
-                                <PlaylistAddCheck fontSize='large' />
-                            </ListItemIcon >
-                            <ListItemText sx={{ color: 'black' }}>Check List</ListItemText>
-                        </ListItemButton>
-                    </Link>
-
                 </List>
                 <Divider />
 
