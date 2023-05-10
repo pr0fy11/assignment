@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Loginlist from '../components/loginform';
-import Navbar from "../components/navbar"
+import Registerform from '../components/registerform';
+import Navbar from "../components/navbar";
 
 class Cars extends Component {
     render() {
@@ -9,7 +9,7 @@ class Cars extends Component {
                 
                 <Navbar></Navbar>
                 
-                <Loginlist></Loginlist>
+                <Registerform> </Registerform>
             </div>
         );
     }

@@ -10,7 +10,7 @@ import Carimg from '../assets/car.jpg'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+
 
 const Img = styled('img')({
     margin: 'auto',
@@ -34,7 +34,6 @@ export default function ComplexGrid() {
     fetchAllCars();
   }, []);
 
-  const navigate = useNavigate();
   const [error, setError] = useState(false)
 
   const handleClick = async (e, id) => { // Accept an additional parameter for the id of the record to delete
