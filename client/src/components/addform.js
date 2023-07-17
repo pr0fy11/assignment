@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 export default function CarForm() {
     const [cars, setCars] = useState({    
-        manifacturer:"",
+        manufacturer:"",
         model:"",
         year:"",
         price: null,
@@ -55,8 +55,8 @@ export default function CarForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            name="manifacturer"
-            label="Car manifacturer.."
+            name="manufacturer"
+            label="Car manufacturer.."
             fullWidth
             autoComplete="given-name"
             variant="standard"

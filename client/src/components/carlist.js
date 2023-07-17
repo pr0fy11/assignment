@@ -80,7 +80,7 @@ export default function ComplexGrid() {
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <Typography gutterBottom variant="subtitle1" component="div">
-                            {car.manifacturer} {car.model}
+                            {car.manufacturer} {car.model}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
                             Year: {car.year}, {car.mileage}km

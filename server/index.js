@@ -75,6 +75,24 @@ function isLoggedIn(req, res, next) {
   res.redirect('http://localhost:3000/login');
 }
 
+//register a new user
+app.post("/register", (req, res) => {
+  const q = "INSERT INTO users(first_name,last_name,password,email) VALUES (?)";
+
+  const values = [
+    req.body.first_name,
+    req.body.last_name,
+    req.body.password,
+    req.body.email,
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
+
 //show all cars
 
 
@@ -108,10 +126,10 @@ app.get("/cars/:id", (req, res) => {
 //insert new car
 
 app.post("/cars", (req, res) => {
-  const q = "INSERT INTO cars(manifacturer, model, year, price, mileage, color, description, image, hp, cc, fuel) VALUES (?)";
+  const q = "INSERT INTO cars(manufacturer, model, year, price, mileage, color, description, image, hp, cc, fuel) VALUES (?)";
 
   const values = [
-    req.body.manifacturer,
+    req.body.manufacturer,
     req.body.model,
     req.body.year,
     req.body.price,
@@ -146,10 +164,10 @@ app.delete("/cars/:id", (req, res) => {
 
 app.put("/cars/:id", (req, res) => {
   const carId = req.params.id;
-  const q = "UPDATE cars SET manifacturer= ?, model= ? , year= ? , price= ? , mileage= ?, color= ?, description= ?, image= ?, hp= ?, cc= ?, fuel= ? WHERE id = ?";
+  const q = "UPDATE cars SET manufacturer= ?, model= ? , year= ? , price= ? , mileage= ?, color= ?, description= ?, image= ?, hp= ?, cc= ?, fuel= ? WHERE id = ?";
 
   const values = [
-    req.body.manifacturer,
+    req.body.manufacturer,
     req.body.model,
     req.body.year,
     req.body.price,
